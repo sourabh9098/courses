@@ -13,5 +13,3 @@ def read_data():
 def write_data(data):
     with open('course.json' , 'w') as fs:
         json.dump(data , fs)
-
-
