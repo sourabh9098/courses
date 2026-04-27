@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from routers import route
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi.staticfiles import StaticFiles
+# from fastapi.staticfiles import StaticFiles
 
 
 
@@ -10,7 +10,7 @@ app = FastAPI()
 app.include_router(route)
 
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 app.add_middleware(
