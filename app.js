@@ -529,8 +529,9 @@ async function deleteCourse(id) {
 ════════════════════════════════════════════ */
 
 async function filterById() {
-  const id  = document.getElementById('filter-id-input').value;
-  const div = document.getElementById('filter-result');
+  const id  = document.getElementById('filter-id-input').value.trim();
+  const div = document.getElementById('filter-id-result');
+
   if (!id) { toast('Please enter a course ID', 'error'); return; }
 
   div.innerHTML = '<div class="spinner" style="margin:20px auto;"></div>';
@@ -543,14 +544,62 @@ async function filterById() {
     }
     div.innerHTML = `<div class="result-card"><div class="detail-grid">${buildDetailHTML(data[0])}</div></div>`;
   } catch (e) {
-    div.innerHTML = `<p style="color:var(--danger)">API error: ${e.message}</p>`;
+    div.innerHTML = `<p style="color:var(--danger)">Error: ${e.message}</p>`;
   }
 }
 
+// ID filter clear
 function clearFilterResult() {
   document.getElementById('filter-id-input').value = '';
-  document.getElementById('filter-result').innerHTML = '';
+  document.getElementById('filter-id-result').innerHTML = '';
 }
+
+// Category filter search
+function filterByCategory() {
+  const cat = document.getElementById('filter-cat-input').value.trim().toLowerCase();
+  const div = document.getElementById('filter-cat-result');
+
+  if (!cat) { toast('Please enter a category name', 'error'); return; }
+
+  const data = allCourses.filter(c =>
+    c.category.toLowerCase().includes(cat)
+  );
+
+  if (!data.length) {
+    div.innerHTML = `<p style="color:var(--muted);margin-top:8px">No courses found in "<strong>${cat}</strong>".</p>`;
+    return;
+  }
+  div.innerHTML = `
+    <p style="color:var(--muted);font-size:12px;margin-bottom:12px">
+      ${data.length} course(s) found in "<strong style="color:var(--text)">${cat}</strong>"
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Title</th><th>Instructor</th><th>Price</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          ${data.map(c => `
+            <tr>
+              <td><span class="id-chip">#${c.id}</span></td>
+              <td class="title-cell">${c.title}</td>
+              <td>${c.instructor}</td>
+              <td class="price-cell">₹${c.price}</td>
+              <td>${pubBadge(c.is_published)}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+// Category filter clear
+function clearCategoryResult() {
+  document.getElementById('filter-cat-input').value = '';
+  document.getElementById('filter-cat-result').innerHTML = '';
+}
+
+
+
 
 /* ════════════════════════════════════════════
    PAGINATION PANEL
@@ -647,6 +696,8 @@ function wireEvents() {
   // ── Filter panel
   document.getElementById('btn-filter-search').addEventListener('click', filterById);
   document.getElementById('btn-filter-clear').addEventListener('click',  clearFilterResult);
+  document.getElementById('btn-cat-search').addEventListener('click', filterByCategory);
+  document.getElementById('btn-cat-clear').addEventListener('click',  clearCategoryResult);
   document.getElementById('filter-id-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') filterById();
   });

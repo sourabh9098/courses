@@ -23,15 +23,28 @@ def data_by_id(item_id:int):
 
 # create new course 
 
-@route.post('/new_course')
-def new_course(product:Product , response_model=Product):
-    data=read_data()
-    new_id = max([ i[id] for i in data])+1 if data else 1
-    new_course=product.dict()
+# @route.post('/new_course')
+# def new_course(product:Product , response_model=Product):
+#     data=read_data()
+#     new_id = max([ i[id] for i in data])+1 if data else 1
+#     new_course=product.dict()
+#     new_course['id'] = new_id
+#     data.append(new_course)
+#     write_data(data)
+#     return {"message": "Course Added Successfully"}
+
+@route.post('/new_course', response_model=Product)
+def new_course(product: Product):
+    data = read_data()
+    new_id = max([i["id"] for i in data]) + 1 if data else 1
+    new_course = product.dict()
     new_course['id'] = new_id
     data.append(new_course)
     write_data(data)
-    return {'Course Added Successfully:'}
+    
+    # return {"message": "Course Added Successfully"}
+    return Product(**new_course)
+
 
 
 #Put method
@@ -96,4 +109,13 @@ def get_item(
     }
 
 
+# category wise filtering 
 
+@route.get('/category')
+def filter_according_category(
+        cat:str=Query(None,description="filter data according to category")
+):
+    data=read_data()
+    if cat:
+        data=[i for i in data if i['category']==cat]
+    return {'Data':data}

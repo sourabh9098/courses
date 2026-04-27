@@ -308,7 +308,7 @@ select option { background: var(--surface2); }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow-x: auto;
 }
 table { width: 100%; border-collapse: collapse; }
 thead { background: var(--surface2); }

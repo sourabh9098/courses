@@ -130,6 +130,7 @@
         </div>
 
         <!-- ── Panel: Add Course ── -->
+
         <div class="panel" id="panel-add">
           <div class="section-header">
             <div class="section-title">Add New Course</div>
@@ -143,12 +144,21 @@
           </div>
         </div>
 
+
+
+
+
+
+
+
+
         <!-- ── Panel: Filter by ID ── -->
         <div class="panel" id="panel-filter">
+
           <div class="section-header">
             <div class="section-title">Filter by ID</div>
           </div>
-          <div class="form-card narrow">
+          <div class="form-card narrow" style="margin-bottom: 28px;">
             <div class="form-group">
               <label class="form-label">Course ID</label>
               <input type="number" class="form-control" id="filter-id-input" placeholder="Enter course ID…">
@@ -157,10 +167,34 @@
               <button class="btn btn-primary" id="btn-filter-search">Search</button>
               <button class="btn btn-outline" id="btn-filter-clear">Clear</button>
             </div>
-            <div id="filter-result" style="margin-top:20px;"></div>
+            <div id="filter-id-result" style="margin-top:20px;"></div>
           </div>
+          
+
+          <!-- ── Box 2: Filter by Category ── -->
+          <div class="section-header">
+            <div class="section-title">Filter by Category</div>
+          </div>
+          <div class="form-card narrow">
+            <div class="form-group">
+              <label class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="filter-cat-input" placeholder="e.g. Python, Design…">
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="btn-cat-search">Search</button>
+              <button class="btn btn-outline" id="btn-cat-clear">Clear</button>
+            </div>
+            <div id="filter-cat-result" style="margin-top:20px;"></div>
+          </div>
+          
         </div>
 
+
+
+
+
+
+        
         <!-- ── Panel: Pagination ── -->
         <div class="panel" id="panel-paginate">
           <div class="section-header">

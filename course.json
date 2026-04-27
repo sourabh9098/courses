@@ -171,16 +171,6 @@
     "discount_percent": null
   },
   {
-    "id": 18,
-    "title": "Flutter App Development",
-    "instructor": "Karan Joshi",
-    "category": "mobile development",
-    "price": 949.0,
-    "duration_hours": 32,
-    "is_published": false,
-    "discount_percent": null
-  },
-  {
     "id": 19,
     "title": "Data Analysis with Pandas",
     "instructor": "Priya Nair",

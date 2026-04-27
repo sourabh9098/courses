@@ -21,7 +21,7 @@ class Product(BaseModel):
     @field_validator('category')
     @classmethod
     def category_check(cls, value:str)->str:
-        return value.title()
+        return value.lower()
     
     @model_validator(mode='after')
     def public_discount_check(product):
@@ -38,5 +38,5 @@ class Product(BaseModel):
         elif product.price <= 1000:
             return 'Mid Range'
         else:
-            "Premium Range"
+            return "Premium Range"
 
