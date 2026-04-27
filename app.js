@@ -9,9 +9,13 @@
 /* ── Config ─────────────────────────────────── */
 // const BASE      = 'http://127.0.0.1:8000';
 // const BASE = 'https://courses-1-6cvi.onrender.com'; 
-const BASE = window.location.hostname === "127.0.0.1"
-  ? "http://127.0.0.1:8000"
-  : "https://courses-1-6cvi.onrender.com";
+
+const BASE =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:8000"
+    : "https://courses-1-6cvi.onrender.com";
+
 const PAGE_SIZE = 8;
 
 /* ── State ──────────────────────────────────── */
