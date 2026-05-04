@@ -9,7 +9,7 @@ A full-stack course management system built with FastAPI and JavaScript.
 * PostgreSQL database integration
 * Responsive admin dashboard UI
 
-🛠 Tech Stack
+Tech Stack
 
 * Backend: FastAPI
 * Frontend: HTML, CSS, JavaScript
