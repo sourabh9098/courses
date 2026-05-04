@@ -7,12 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
-app.include_router(route)
 
+app.include_router(route) 
 
-# app.mount("/", StaticFiles(directory="static", html=True), name="static")
-
-
+#connecting frontend with backend
 app.add_middleware(
     CORSMiddleware ,
     # allow_origins=["http://127.0.0.1:8000"],

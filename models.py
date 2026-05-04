@@ -1,8 +1,8 @@
 from pydantic import BaseModel , Field, field_validator , model_validator , computed_field
 from typing import Optional
 
-class Product(BaseModel):
-    id:Optional[int] = None
+class Course(BaseModel):
+    id:Optional[int]
     title:str=Field(min_length=2 , max_length=50 , description='Title Of Courses')
     instructor:str=Field(min_length=2 , max_length=30 , description='Name Of Instructor For This Course')
     category:str=Field(min_length=1 , max_length=20 , description='Category of course')
@@ -24,18 +24,18 @@ class Product(BaseModel):
         return value.lower()
     
     @model_validator(mode='after')
-    def public_discount_check(product):
-        if not product.is_published and product.discount_percent>0.0:
+    def public_discount_prduct(course):
+        if not course.is_published and course.discount_percent>0.0:
             raise ValueError("Not Possible When Course is not publish how can you give discount")
-        return product
+        return course
     
     # create computed field for price category
     @computed_field
     @property
-    def price_category(product)->str:
-        if product.price <= 500:
+    def price_category(course)->str:
+        if course.price <= 500:
             return 'In Budget'
-        elif product.price <= 1000:
+        elif course.price <= 1000:
             return 'Mid Range'
         else:
             return "Premium Range"

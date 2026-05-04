@@ -11,27 +11,26 @@ load_dotenv()
 
 
 # Engine -> Connection
-try:
-    engine = create_engine(os.getenv("DATABASE_URL"))
-    with engine.connect() as connection:
-        result = connection.execute(text("SELECT version();"))
-        version = result.fetchone()
-        print("DB CONNECT successfully : Database version" , version[0])
-except Exception as e:
-    print("Error coonecting to the databse" , e)
-    exit(1)
+# try:
+#     engine = create_engine(os.getenv("DATABASE_URL"))
+#     with engine.connect() as connection:
+#         result = connection.execute(text("SELECT version();"))
+#         version = result.fetchone()
+#         print("DB CONNECT successfully : Database version" , version[0])
+# except Exception as e:
+#     print("Error coonecting to the databse" , e)
+#     exit(1)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 # engine 
 engine = create_engine(DATABASE_URL)
 
-
 # session
 Session = sessionmaker(bind=engine)
 
 #dependency
-def ger_db():
+def get_db():
     db = Session()
     try:
         yield db # genrator function. # yaha ye courser ko rook kar rakhta hain jab tk query run hoti hian 
@@ -46,3 +45,8 @@ print(DATABASE_URL)
 
 # fatch fatchall 
 # fatch one 
+
+
+
+
+
